@@ -8,7 +8,7 @@
     "email": "zenoven@gmail.com"
   },
   "dependencies": {
-    "electron-config": "^1.0.0",
+    "electron-store": "^1.0.0",
     "electron-is": "^2.4.1",
     "electron-log": "^2.2.14"
   }
