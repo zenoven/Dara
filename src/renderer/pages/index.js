@@ -12,8 +12,6 @@ export default connect(state => ({
   g: state.g,
 }))((props) =>
   <Wrapper>
-    <h2>Data Test: {props.g}</h2>
-    <h2>is.osx(): {JSON.stringify(is.osx())}</h2>
     <button onClick={() => window.create()}>new window</button>
   </Wrapper>
 );
