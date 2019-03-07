@@ -7,7 +7,12 @@ Another download APP based on aria2 with electron, dva and antd
 
 ## 使用
 
-TODO
+### 开发
+
+```bash
+npm run dev
+npm start
+```
 
 ## 目录结构
 
