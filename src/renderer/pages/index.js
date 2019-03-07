@@ -1,7 +1,7 @@
 import { connect } from 'dva';
 import { remote } from 'electron';
 import is from 'electron-is';
-import Wrapper from '../layout/wrapper';
+import Wrapper from 'layout/wrapper';
 
 const {
   application,

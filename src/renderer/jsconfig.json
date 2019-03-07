@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noLib": true,
+    "paths": {
+      "c/*": ["./components/*"],
+      "components/*": ["./components/*"],
+      "common/*": ["./common/*"],
+      "pages/*": ["./pages/*"],
+      "models/*": ["./models/*"],
+      "layout/*": ["./layout/*"],
+      "root/*": ["./*"],
+    }
+  }
+}

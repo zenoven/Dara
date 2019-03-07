@@ -1,4 +1,4 @@
-import Header from '../header';
+import Header from 'layout/header';
 import styles from './index.less';
 
 export default (props) => {

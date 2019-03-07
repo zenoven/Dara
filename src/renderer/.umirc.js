@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join, resolve } from 'path';
 import slash from 'slash';
 
 export default {
@@ -34,4 +34,13 @@ export default {
     }
     callback(null, isExternal);
   },
+  alias: {
+    c: join(__dirname, './components'),
+    components: join(__dirname, './components'),
+    common: join(__dirname, './common'),
+    pages: join(__dirname, './pages'),
+    models: join(__dirname, './models'),
+    layout: join(__dirname, './layout'),
+    root: join(__dirname), // renderer root
+  }
 };
