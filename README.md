@@ -12,6 +12,7 @@ Another download APP based on aria2 with electron, dva and antd
 - [] 添加下载任务
 - [] 下载列表
   - [] 正在下载
+  - [] 已暂停
   - [] 已完成/已取消
 - 下载详情
 
