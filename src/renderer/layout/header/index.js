@@ -28,8 +28,25 @@ const elementList = radioItems.map(({ key, text, icon }) =>
   </Radio.Button>
 );
 
-export default class Header extends PureComponent {
+class Header extends PureComponent {
+  handleChangeTab = (e) => {
+    let {
+      dispatch,
+    } = this.props;
+    dispatch({
+      type: 'task/updateTab',
+      payload: e.target.value,
+    })
+  }
+
   render() {
+    let {
+      task: {
+        tab,
+      },
+      dispatch,
+    } = this.props;
+    console.log('this.props.task', this.props.task);
     return (
       <Layout.Header className={styles.header}>
         <Row type='flex'>
@@ -37,7 +54,7 @@ export default class Header extends PureComponent {
             <Button icon='plus-circle' className={styles.newTaskButton} type='primary'>新任务</Button>
           </Col>
           <Col span={8}>
-            <Radio.Group defaultValue='in-progress' >
+            <Radio.Group value={tab} onChange={this.handleChangeTab} >
               {elementList}
             </Radio.Group>
           </Col>
@@ -49,3 +66,4 @@ export default class Header extends PureComponent {
     )
   }
 }
+export default connect(({task}) => ({task}))(Header)
