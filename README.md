@@ -2,7 +2,18 @@
 
 Another download APP based on aria2 with electron, dva and antd
 
+## Roadmap
 
+### v0.1
+
+- [] 整体布局
+  - [] header
+  - [] content
+- [] 添加下载任务
+- [] 下载列表
+  - [] 正在下载
+  - [] 已完成/已取消
+- 下载详情
 
 
 ## 使用
