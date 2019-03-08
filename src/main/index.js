@@ -5,7 +5,7 @@ import log from 'electron-log';
 import * as application from './services/application';
 import * as window from './services/window';
 import * as menu from './services/menu';
-import * as store from './configs/store';
+import * as store from './config/store';
 
 log.transports.file.level = 'info';
 
@@ -48,6 +48,6 @@ global.services = {
   application,
   window,
 };
-global.configs = {
+global.config = {
   store,
 };

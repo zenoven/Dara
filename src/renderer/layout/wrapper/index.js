@@ -1,11 +1,14 @@
 import Header from 'layout/header';
 import styles from './index.less';
+import { Layout, Menu } from 'antd';
+
+const { Content } = Layout;
 
 export default (props) => {
   return (
-    <div className={styles.wrapper}>
+    <Layout className={styles.wrapper}>
       <Header />
-      {props.children}
-    </div>
+      <Content className={styles.content}>{props.children}</Content>
+    </Layout>
   )
 };

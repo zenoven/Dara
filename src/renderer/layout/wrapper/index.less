@@ -1,9 +1,15 @@
 @import '../../common/style/reset.less';
+@import '../../common/style/config.less';
 
 .wrapper {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.content {
+  flex: 1;
+  height: calc(100vh - @header-height);
+  overflow: auto;
 }
