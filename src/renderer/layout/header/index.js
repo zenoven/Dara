@@ -41,7 +41,7 @@ export default class Header extends PureComponent {
               {elementList}
             </Radio.Group>
           </Col>
-          <Col push={3} span={5}>
+          <Col push={2} span={6}>
             <Input.Search placeholder='请输入要查找的任务名' />
           </Col>
         </Row>
