@@ -49,17 +49,17 @@ class Header extends PureComponent {
     console.log('this.props.task', this.props.task);
     return (
       <Layout.Header className={styles.header}>
-        <Row type='flex'>
-          <Col span={8}>
+        <Row type='flex' gutter={0} >
+          <Col span={6}>
             <Button icon='plus-circle' className={styles.newTaskButton} type='primary'>新任务</Button>
           </Col>
-          <Col span={8}>
+          <Col span={12}>
             <Radio.Group value={tab} onChange={this.handleChangeTab} >
               {elementList}
             </Radio.Group>
           </Col>
-          <Col push={2} span={6}>
-            <Input.Search placeholder='请输入要查找的任务名' />
+          <Col span={6}>
+            <Input.Search className={styles.searchInput} placeholder='请输入要查找的任务名' />
           </Col>
         </Row>
       </Layout.Header>
