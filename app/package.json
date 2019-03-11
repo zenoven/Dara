@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "antd": "^3.14.1",
+    "aria2": "^4.0.3",
     "electron-is": "^3.0.0",
     "electron-log": "^2.2.14",
     "electron-store": "^1.0.0"

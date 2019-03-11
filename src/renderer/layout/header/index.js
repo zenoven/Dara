@@ -6,17 +6,17 @@ import styles from './index.less';
 
 const radioItems = [
   {
-    key: 'in-progress',
+    key: 'active',
     text: '进行中',
     icon: 'caret-right'
   },
   {
-    key: 'paused',
+    key: 'waiting',
     text: '已暂停',
     icon: 'pause',
   },
   {
-    key: 'done',
+    key: 'stopped',
     text: '已完成',
     icon: 'check',
   },
@@ -34,8 +34,11 @@ class Header extends PureComponent {
       dispatch,
     } = this.props;
     dispatch({
-      type: 'task/updateTab',
-      payload: e.target.value,
+      type: 'task/fetchList',
+      payload: {
+        tab: e.target.value,
+        params: []
+      },
     })
   }
 

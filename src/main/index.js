@@ -5,6 +5,7 @@ import log from 'electron-log';
 import * as application from './services/application';
 import * as window from './services/window';
 import * as menu from './services/menu';
+import aria2 from './services/aria2';
 import * as store from './config/store';
 
 log.transports.file.level = 'info';
@@ -20,6 +21,7 @@ app.on('ready', () => {
   log.info('(main/index) app ready');
   application.init();
   menu.init();
+  aria2.open();
 
   // 加载 devtools extension
   if (is.dev()) {
@@ -28,6 +30,7 @@ app.on('ready', () => {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    aria2.close();
     app.quit();
   }
 });
@@ -47,6 +50,7 @@ app.on('quit', () => {
 global.services = {
   application,
   window,
+  aria2,
 };
 global.config = {
   store,

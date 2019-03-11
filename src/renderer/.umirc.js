@@ -41,6 +41,7 @@ export default {
     pages: join(__dirname, './pages'),
     models: join(__dirname, './models'),
     layout: join(__dirname, './layout'),
+    services: join(__dirname, './services'),
     root: join(__dirname), // renderer root
   }
 };

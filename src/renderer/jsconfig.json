@@ -9,6 +9,7 @@
       "pages/*": ["./pages/*"],
       "models/*": ["./models/*"],
       "layout/*": ["./layout/*"],
+      "services/*": ["./services/*"],
       "root/*": ["./*"],
     }
   }

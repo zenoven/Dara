@@ -6,7 +6,7 @@ import Wrapper from 'layout/wrapper';
 const {
   application,
   window
-} = remote.getGlobal('services')
+} = remote.getGlobal('services');
 
 export default connect(({task}) => ({task}))((props) =>
   <Wrapper>
