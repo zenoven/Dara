@@ -2,6 +2,5 @@
 /node_modules
 /app/dist
 /app/node_modules
-/app/package-lock.json
 /src/renderer/pages/.umi
-package-lock.json
+**/*/package-lock.json
