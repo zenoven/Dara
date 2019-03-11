@@ -3,4 +3,5 @@
 /app/dist
 /app/node_modules
 /src/renderer/pages/.umi
-**/*/package-lock.json
+package-lock.json
+/app/package-lock.json
