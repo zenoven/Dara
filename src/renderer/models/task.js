@@ -2,6 +2,8 @@ import { fetchList } from 'services/task';
 const getInitialState = () => {
   return {
     tab: 'active',
+    list: [],
+    stat: {},
   };
 }
 const maxCount = 10000;
@@ -14,6 +16,12 @@ export default {
         ...state,
         tab: payload
       }
+    },
+    update(state, { payload: { key, value } }) {
+      return {
+        ...state,
+        [key]: value
+      }
     }
   },
   effects: {
@@ -22,7 +30,7 @@ export default {
       yield put({
         type: 'updateTab',
         payload: tab,
-      })
+      });
       let params = keys ? [keys] : [];
       if (tab !== 'active') {
         params = [offset, num].concat(params);
@@ -31,15 +39,24 @@ export default {
         status: tab,
         params,
       });
-      console.log('result:', result);
+      if (result) {
+        yield put({
+          type: 'update',
+          payload: {
+            key: 'list',
+            value: result,
+          },
+        })
+      }
     }
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen((location) => {
+        console.log('setup');
         dispatch({
-          type: 'task/fetchList',
+          type: 'fetchList',
           payload: {
             tab: 'active',
             params: []
