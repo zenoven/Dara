@@ -1,4 +1,4 @@
-import { fetchList } from 'services/task';
+import { fetchList, fetchStat } from 'services/task';
 const getInitialState = () => {
   return {
     tab: 'active',
@@ -11,26 +11,18 @@ export default {
   namespace: 'task',
   state: getInitialState(),
   reducers: {
-    updateTab(state, {payload}) {
+    update(state, { payload }) {
       return {
         ...state,
-        tab: payload
+        ...payload,
       }
     },
-    update(state, { payload: { key, value } }) {
-      return {
-        ...state,
-        [key]: value
-      }
-    }
   },
   effects: {
-    *fetchList({ payload }, { call, put, select }) {
+    *fetchList({ payload = {} }, { call, put, select }) {
+      let state = yield select(state => state.task);
       let { tab, offset = 0, num = maxCount, keys } = payload;
-      yield put({
-        type: 'updateTab',
-        payload: tab,
-      });
+      tab = tab || state.tab;
       let params = keys ? [keys] : [];
       if (tab !== 'active') {
         params = [offset, num].concat(params);
@@ -39,28 +31,47 @@ export default {
         status: tab,
         params,
       });
+      console.log('fetchList result:', result);
       if (result) {
         yield put({
           type: 'update',
           payload: {
-            key: 'list',
-            value: result,
+            list: result,
           },
         })
       }
-    }
+    },
+
+    *fetchStat({ payload }, { call, put, select }) {
+      let result = yield call(fetchStat, payload);
+      console.log('fetchStat result:', result);
+      if (result) {
+        yield put({
+          type: 'update',
+          payload: {
+            stat: result,
+          },
+        })
+      }
+    },
+
+    *refresh({ payload }, { call, put, select, all }) {
+      return yield all([
+        put({type: 'fetchList', payload}),
+        put({type: 'fetchStat'}),
+      ])
+    },
+
+    *updateAsync({ payload }, { call, put, select }) {
+      return yield put({ type: 'update', payload });
+    },
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen((location) => {
-        console.log('setup');
         dispatch({
-          type: 'fetchList',
-          payload: {
-            tab: 'active',
-            params: []
-          },
+          type: 'refresh',
         })
         // let match = pathToRegexp('/config/:id?').exec(location.pathname);
       });

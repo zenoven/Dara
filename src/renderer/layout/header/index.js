@@ -34,11 +34,14 @@ class Header extends PureComponent {
       dispatch,
     } = this.props;
     dispatch({
-      type: 'task/fetchList',
+      type: 'task/updateAsync',
       payload: {
         tab: e.target.value,
-        params: []
       },
+    }).then(() => {
+      dispatch({
+        type: 'task/refresh',
+      })
     })
   }
 
@@ -47,9 +50,7 @@ class Header extends PureComponent {
       task: {
         tab,
       },
-      dispatch,
     } = this.props;
-    console.log('this.props.task', this.props.task);
     return (
       <Layout.Header className={styles.header}>
         <Row type='flex' gutter={0} >
