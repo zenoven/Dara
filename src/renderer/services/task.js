@@ -10,3 +10,7 @@ export function fetchList(payload) {
 export function fetchStat(payload) {
   return aria2.call('getGlobalStat', payload);
 }
+
+export function fetchNotificationList(payload) {
+  return aria2.listNotifications();
+}

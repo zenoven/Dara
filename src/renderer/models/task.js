@@ -1,4 +1,8 @@
-import { fetchList, fetchStat } from 'services/task';
+import { fetchList, fetchStat, fetchNotificationList } from 'services/task';
+import { remote } from 'electron';
+
+const { aria2 } = remote.getGlobal('services');
+
 const getInitialState = () => {
   return {
     tab: 'active',
@@ -11,6 +15,7 @@ const getInitialState = () => {
       downloadSpeed: 0,
       uploadSpeed: 0,
     },
+    notificationList: [],
   };
 }
 const maxCount = 10000;
@@ -38,7 +43,6 @@ export default {
         status: tab,
         params,
       });
-      console.log('fetchList result:', result);
       if (result) {
         yield put({
           type: 'update',
@@ -51,7 +55,6 @@ export default {
 
     *fetchStat({ payload }, { call, put, select }) {
       let result = yield call(fetchStat, payload);
-      console.log('fetchStat result:', result);
       if (result) {
         yield put({
           type: 'update',
@@ -59,6 +62,21 @@ export default {
             stat: result,
           },
         })
+      }
+    },
+
+    *fetchNotificationList({ payload }, { call, put, select }) {
+      let result = yield call(fetchNotificationList);
+      if (result) {
+        yield put({
+          type: 'update',
+          payload: {
+            notificationList: result,
+          },
+        });
+        return result;
+      } else {
+        return yield new Promise.reject(new Error('fetchNotificationList error'));
       }
     },
 
@@ -77,8 +95,21 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen((location) => {
+        // refresh at start up
         dispatch({
           type: 'refresh',
+        });
+        // refresh on receive notifications
+        dispatch({
+          type: 'fetchNotificationList',
+        }).then((notificationList) => {
+          notificationList.forEach(notification => {
+            aria2.on(notification, (params) => {
+              dispatch({
+                type: 'refresh',
+              });
+             });
+          });
         })
         // let match = pathToRegexp('/config/:id?').exec(location.pathname);
       });
