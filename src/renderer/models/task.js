@@ -3,7 +3,14 @@ const getInitialState = () => {
   return {
     tab: 'active',
     list: [],
-    stat: {},
+    stat: {
+      numActive: 0,
+      numStopped: 0,
+      numStoppedTotal: 0,
+      numWaiting: 0,
+      downloadSpeed: 0,
+      uploadSpeed: 0,
+    },
   };
 }
 const maxCount = 10000;

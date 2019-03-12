@@ -7,24 +7,29 @@ import styles from './index.less';
 const radioItems = [
   {
     key: 'active',
+    countProps: 'numActive',
     text: '进行中',
     icon: 'caret-right'
   },
   {
     key: 'waiting',
+    countProps: 'numWaiting',
     text: '已暂停',
     icon: 'pause',
   },
   {
     key: 'stopped',
+    // numStopped: The number of stopped downloads in the current session. This value is capped by the --max-download-result option.
+    // numStoppedTotal: The number of stopped downloads in the current session and not capped by the --max-download-result option.
+    countProps: 'numStopped',
     text: '已完成',
     icon: 'check',
   },
 ];
 
-const elementList = radioItems.map(({ key, text, icon }) =>
+const getElementList = (stat) => radioItems.map(({ key, text, icon, countProps }) =>
   <Radio.Button key={key} value={key}>
-    <Icon type={icon} /><span className={styles.radioText}>{text}</span>
+    <Icon type={icon} /><span className={styles.radioText}>{text} ({stat[countProps]})</span>
   </Radio.Button>
 );
 
@@ -49,6 +54,7 @@ class Header extends PureComponent {
     let {
       task: {
         tab,
+        stat,
       },
     } = this.props;
     return (
@@ -59,7 +65,7 @@ class Header extends PureComponent {
           </Col>
           <Col span={12}>
             <Radio.Group value={tab} onChange={this.handleChangeTab} >
-              {elementList}
+              {getElementList(stat)}
             </Radio.Group>
           </Col>
           <Col span={6}>
