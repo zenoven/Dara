@@ -82,13 +82,18 @@ export default {
 
     *refresh({ payload }, { call, put, select, all }) {
       return yield all([
-        put({type: 'fetchList', payload}),
-        put({type: 'fetchStat'}),
-      ])
+        put({ type: 'fetchList', payload }),
+        put({ type: 'fetchStat' }),
+      ]);
     },
 
     *updateAsync({ payload }, { call, put, select }) {
       return yield put({ type: 'update', payload });
+    },
+
+    *changeTab({ payload }, { call, put, select }) {
+      yield put({ type: 'update', payload });
+      yield put({ type: 'fetchList', payload });
     },
   },
 

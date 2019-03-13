@@ -39,15 +39,11 @@ class Header extends PureComponent {
       dispatch,
     } = this.props;
     dispatch({
-      type: 'task/updateAsync',
+      type: 'task/changeTab',
       payload: {
         tab: e.target.value,
       },
-    }).then(() => {
-      dispatch({
-        type: 'task/refresh',
-      })
-    })
+    });
   }
 
   render() {
