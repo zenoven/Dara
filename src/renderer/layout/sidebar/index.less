@@ -1,0 +1,29 @@
+@import '../../common/style/config.less';
+.sidebar {
+  width: @sidebar-width;
+  height: 100%;
+  background: @sidebar-background;
+  padding-top: @header-height;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+  cursor: default;
+  box-sizing: border-box;
+  button {
+    -webkit-app-region: no-drag; // fix button cannot click
+  }
+  .menu {
+    background: transparent;
+    border-right: none;
+  }
+  .menuItem {
+    margin: 0;
+    height: 48px;
+    line-height: 48px;
+    background: transparent;
+    &:global(.ant-menu-item-selected),
+    &:global(.ant-menu-item-selected) {
+      background: @content-background;
+
+    }
+  }
+}

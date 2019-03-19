@@ -2,6 +2,7 @@
 @import '../../common/style/config.less';
 
 .wrapper {
+  display: flex;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,6 +11,7 @@
 }
 .content {
   flex: 1;
-  height: calc(100vh - @header-height);
+  width: ~'calc(100vh - @{sidebar-width})';
+  height: 100%;
   overflow: auto;
 }

@@ -1,14 +1,11 @@
-import Header from 'layout/header';
+import Sidebar from 'layout/sidebar';
 import styles from './index.less';
-import { Layout, Menu } from 'antd';
-
-const { Content } = Layout;
 
 export default (props) => {
   return (
-    <Layout className={styles.wrapper}>
-      <Header />
-      <Content className={styles.content}>{props.children}</Content>
-    </Layout>
+    <div className={styles.wrapper}>
+      <Sidebar />
+      <div className={styles.content}>{props.children}</div>
+    </div>
   )
 };
