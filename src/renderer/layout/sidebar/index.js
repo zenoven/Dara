@@ -58,12 +58,15 @@ class Header extends PureComponent {
           className={styles.menu}
         >
           {
-            statusList.map(({ text, icon, key, countProps }) => (
-              <MenuItem key={key} className={styles.menuItem} style={{margin: 0}}>
-                <Icon type={icon} />
-                <span className={styles.radioText}>{text} ({stat[countProps]})</span>
-              </MenuItem>
-            ))
+            statusList.map(({ text, icon, key, countProps }) => {
+              let count = stat[countProps] && stat[countProps] > 0 ? <> ({stat[countProps]})</> : null;
+              return (
+                <MenuItem key={key} className={styles.menuItem} style={{margin: 0}}>
+                  <Icon type={icon} />
+                  <span className={styles.radioText}>{text}{count}</span>
+                </MenuItem>
+              )
+            })
           }
         </Menu>
       </div>

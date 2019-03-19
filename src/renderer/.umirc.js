@@ -42,6 +42,7 @@ export default {
     models: join(__dirname, './models'),
     layout: join(__dirname, './layout'),
     services: join(__dirname, './services'),
+    utils: join(__dirname, './utils'),
     root: join(__dirname), // renderer root
   }
 };

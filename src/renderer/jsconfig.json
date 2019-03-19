@@ -10,6 +10,7 @@
       "models/*": ["./models/*"],
       "layout/*": ["./layout/*"],
       "services/*": ["./services/*"],
+      "utils/*": ["./utils/*"],
       "root/*": ["./*"],
     }
   }
