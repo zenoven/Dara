@@ -8,6 +8,7 @@
   -webkit-user-select: none;
   cursor: default;
   box-sizing: border-box;
+  border-right: 1px solid #ddd;
   button {
     -webkit-app-region: no-drag; // fix button cannot click
   }
@@ -17,13 +18,12 @@
   }
   .menuItem {
     margin: 0;
-    height: 48px;
-    line-height: 48px;
+    height: 54px;
+    line-height: 54px;
     background: transparent;
     &:global(.ant-menu-item-selected),
     &:global(.ant-menu-item-selected) {
-      background: @content-background;
-
+      background: transparent;
     }
   }
 }

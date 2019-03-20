@@ -1,5 +1,5 @@
 import { connect } from 'dva';
-import { Table, Progress, Icon } from 'antd';
+import { Table, Progress, Icon, Tooltip } from 'antd';
 import names from 'classnames';
 import { remote } from 'electron';
 import is from 'electron-is';
@@ -32,8 +32,16 @@ const getColumns = (props) => ([
       text = parseFloat(text);
       return (
         <div className={styles.actionsWrapper}>
-          <a href="javascript:;"><Icon type='folder-open' className={styles.actionIcon} /></a>
-          <a href="javascript:;"><Icon type='delete' className={names(styles.actionIcon, styles.deleteIcon)} /></a>
+          <a href="javascript:;">
+            <Tooltip title='打开所在文件夹'>
+              <Icon type='folder-open' className={styles.actionIcon} />
+            </Tooltip>
+          </a>
+          <a href="javascript:;">
+            <Tooltip title='删除'>
+              <Icon type='delete' className={names(styles.actionIcon, styles.deleteIcon)} />
+            </Tooltip>
+          </a>
         </div>
       );
     }

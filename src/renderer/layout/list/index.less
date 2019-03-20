@@ -1,7 +1,13 @@
+@import '../../common/style/config.less';
+
 .list {
+  height: 100%;
+  :global(.ant-table) {
+    height: 100%;
+  }
   .actionsWrapper {
     > a {
-      color: rgb(97, 97, 97);
+      color: rgb(146, 146, 146);
       & + a {
         margin-left: 20px;
       }
@@ -9,6 +15,10 @@
   }
   .actionIcon {
     font-size: 15px;
+    &:hover,
+    &:active {
+      color: @link-color;
+    }
   }
 }
 
