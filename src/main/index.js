@@ -8,6 +8,12 @@ import * as menu from './services/menu';
 import aria2 from './services/aria2';
 import * as store from './config/store';
 
+const home = app.getPath('home');
+
+const devTools = [
+  join(home, '/Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0')
+];
+
 log.transports.file.level = 'info';
 
 log.info('(main/index) app start');
@@ -25,6 +31,9 @@ app.on('ready', () => {
 
   // 加载 devtools extension
   if (is.dev()) {
+    devTools.forEach((tool) => {
+      BrowserWindow.addDevToolsExtension(tool)
+    })
   }
 });
 
