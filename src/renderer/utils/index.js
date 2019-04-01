@@ -46,5 +46,5 @@ export function getProgress({
   completedLength,
   ...item
 }) {
-  return BigNumber(completedLength).times(100).div(completedLength).toFixed(2)
+  return BigNumber(completedLength).times(100).div(completedLength).toFixed(2);
 }

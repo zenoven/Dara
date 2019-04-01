@@ -51,11 +51,22 @@ const getColumns = (props) => ([
 const List = (props) => {
   let {
     task: {
-      list
+      list,
+      tab
     }
   } = props;
+  if (list.length) {
+    console.count('render times');
+    console.timeEnd('changeTab cost render');
+  }
   return (
-    <div className={styles.list}>
+    <div className={styles.list} style={{opacity: 0.25}}>
+      tab:{tab}, with:
+      {
+        list && list.length
+          ? <span>dataset length: {list.length}</span>
+          : <span>no data</span>
+      }
       <Table
         rowKey='gid'
         columns={getColumns(props).filter(({hide}) => !hide)}

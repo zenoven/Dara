@@ -93,7 +93,16 @@ export default {
 
     *changeTab({ payload }, { call, put, select }) {
       yield put({ type: 'update', payload });
+      console.time('fetching list');
       yield put({ type: 'fetchList', payload });
+      // yield call(() => {
+      //   return new Promise((resolve) => {
+      //     setTimeout(resolve, 1000);
+      //   })
+      //  });
+
+      console.timeEnd('fetching list');
+      console.timeEnd('changeTab cost');
     },
   },
 

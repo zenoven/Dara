@@ -31,7 +31,9 @@ const statusList = [
 
 
 class Header extends PureComponent {
-  handleChangeStatus = ({key}) => {
+  handleChangeStatus = ({ key }) => {
+    console.time('changeTab cost');
+    console.time('changeTab cost render');
     let {
       dispatch,
     } = this.props;
@@ -51,7 +53,7 @@ class Header extends PureComponent {
       },
     } = this.props;
     return (
-      <div className={styles.sidebar} >
+      <div className={styles.sidebar} style={{opacity: 0.25}} >
         <Menu
           onClick={this.handleChangeStatus}
           defaultSelectedKeys={[tab]}
