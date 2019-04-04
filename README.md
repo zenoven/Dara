@@ -43,6 +43,17 @@ npm start
 - webpack.config.js   // 给 main 用的 webpack 配置
 ```
 
+## 打包
+```shell
+npm run pack
+
+# 不打 dmg、exe 包，本地验证时用
+npm run pack:dir
+
+# 不重复做 webpack 层的构建和 rebuild，本地验证打包流程用
+npm run pack:dirOnly
+```
+
 
 ## 参考
 
