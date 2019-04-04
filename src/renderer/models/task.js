@@ -1,12 +1,18 @@
 import { fetchList, fetchStat, fetchNotificationList } from 'services/task';
 import { remote } from 'electron';
+import { statusList } from 'layout/sidebar';
+
 
 const { aria2 } = remote.getGlobal('services');
 
 const getInitialState = () => {
   return {
     tab: 'active',
-    list: [],
+    list: statusList.reduce((result, {key}) => {
+      result[key] = [];
+      return result;
+    }, {}),
+    init: true,
     stat: {
       numActive: 0,
       numStopped: 0,
@@ -47,10 +53,22 @@ export default {
         yield put({
           type: 'update',
           payload: {
-            list: result,
+            list: {
+              ...state.list,
+              [tab]: result,
+             },
           },
         })
       }
+    },
+
+    *fetchAllList({ payload = {} }, { call, put, select, all }) {
+      return yield all(statusList.map(({key}) => {
+        return put({
+          type: 'fetchList',
+          tab: key
+        });
+      }))
     },
 
     *fetchStat({ payload }, { call, put, select }) {
@@ -81,10 +99,15 @@ export default {
     },
 
     *refresh({ payload }, { call, put, select, all }) {
-      return yield all([
-        put({ type: 'fetchList', payload }),
-        put({ type: 'fetchStat' }),
-      ]);
+      let { init } = yield select(state => state.task);
+      if (init) {
+        return yield all([
+          put({ type: 'fetchAllList', payload }),
+          put({ type: 'fetchStat' }),
+          put({ type: 'update', payload: {init: false} }),
+        ]);
+      }
+
     },
 
     *updateAsync({ payload }, { call, put, select }) {

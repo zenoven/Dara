@@ -6,7 +6,7 @@ import styles from './index.less';
 
 const MenuItem = Menu.Item;
 
-const statusList = [
+export const statusList = [
   {
     key: 'active',
     countProps: 'numActive',
