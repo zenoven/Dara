@@ -11,18 +11,18 @@ const widthMap = {
   active: {
     name: '30%',
     progress: '30%',
-    downloadSpeed: '20%',
-    actions: '20%',
+    // downloadSpeed: '20%',
+    actions: '100px',
   },
   waiting: {
     name: '30%',
     progress: '30%',
-    downloadSpeed: '20%',
-    actions: '20%',
+    // downloadSpeed: '20%',
+    actions: '100px',
   },
   stopped: {
-    name: '50%',
-    actions: '50%',
+    // name: '50%',
+    actions: '100px',
   }
 }
 const TabPane = Tabs.TabPane;
