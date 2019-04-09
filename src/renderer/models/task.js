@@ -2,7 +2,6 @@ import { fetchList, fetchStat, fetchNotificationList } from 'services/task';
 import { remote } from 'electron';
 import { statusList } from 'layout/sidebar';
 
-
 const { aria2 } = remote.getGlobal('services');
 
 const getInitialState = () => {
@@ -117,6 +116,11 @@ export default {
     *changeTab({ payload }, { call, put, select }) {
       yield put({ type: 'update', payload });
       yield put({ type: 'fetchList', payload });
+    },
+
+    *add({ payload }, { call, put, select }) {
+      let { type = 'uri', params } = payload;
+      yield call((x) => aria2.call(`add${type.toUpperCase()}`, x), params);
     },
   },
 
