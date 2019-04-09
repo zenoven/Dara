@@ -1,4 +1,5 @@
-import BigNumber from 'bignumber.js'
+import BigNumber from 'bignumber.js';
+
 export function formatTask(task) {
   let {
     gid,
@@ -46,5 +47,5 @@ export function getProgress({
   completedLength,
   ...item
 }) {
-  return BigNumber(completedLength).times(100).div(completedLength).toFixed(2)
+  return BigNumber(completedLength).times(100).div(completedLength).toFixed(2);
 }
