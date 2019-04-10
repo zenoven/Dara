@@ -10,4 +10,5 @@ export function init() {
     frame: false,
   });
   win.loadURL(getPath());
+  return win;
 }

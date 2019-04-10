@@ -1,5 +1,6 @@
 @import '../../common/style/config.less';
 .sidebar {
+  position: relative;
   width: @sidebar-width;
   height: 100%;
   background: @sidebar-background;
@@ -13,17 +14,30 @@
     -webkit-app-region: no-drag; // fix button cannot click
   }
   .menu {
+    margin: 0 @gutter @gutter;
     background: transparent;
     border-right: none;
   }
   .menuItem {
     margin: 0;
-    height: 54px;
-    line-height: 54px;
+    height: 40px;
+    line-height: 40px;
     background: transparent;
-    &:global(.ant-menu-item-active),
-    &:global(.ant-menu-item-selected) {
+    & + .menuItem {
+      margin-top: 10px;
+    }
+    &:global(.ant-menu-item-active) {
       background: transparent;
     }
+    &:global(.ant-menu-item-selected) {
+      background: #ddd;
+    }
   }
+}
+
+.addTaskButtonWrapper {
+  position: absolute;
+  bottom: @gutter;
+  left: @gutter;
+  right: @gutter;
 }

@@ -8,7 +8,7 @@ const {
 } = remote.getGlobal('services');
 
 export default connect(({ task }) => ({ task }))((props) =>
-  <Wrapper>
+  <Wrapper noSidebar>
     <List />
   </Wrapper>
 );

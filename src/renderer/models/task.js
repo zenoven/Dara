@@ -118,7 +118,7 @@ export default {
       yield put({ type: 'fetchList', payload });
     },
 
-    *add({ payload }, { call, put, select }) {
+    *doAddTask({ payload }, { call, put, select }) {
       let { type = 'uri', params } = payload;
       yield call((x) => aria2.call(`add${type.toUpperCase()}`, x), params);
     },

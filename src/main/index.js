@@ -45,7 +45,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  if (window.getCount() === 0) {
+  if (window.getAllWindows.length === 0) {
     application.init();
   }
 });

@@ -1,7 +1,7 @@
 import { connect } from 'dva';
 import { remote } from 'electron';
 import React, { PureComponent } from 'react';
-import { Icon, Menu } from 'antd';
+import { Icon, Menu, Button } from 'antd';
 import styles from './index.less';
 
 const MenuItem = Menu.Item;
@@ -43,6 +43,10 @@ class Header extends PureComponent {
     });
   }
 
+  add = () => {
+
+  }
+
   render() {
     let {
       task: {
@@ -61,7 +65,7 @@ class Header extends PureComponent {
             statusList.map(({ text, icon, key, countProps }) => {
               let count = stat[countProps] && stat[countProps] > 0 ? <> ({stat[countProps]})</> : null;
               return (
-                <MenuItem key={key} className={styles.menuItem} style={{margin: 0}}>
+                <MenuItem key={key} className={styles.menuItem}>
                   <Icon type={icon} />
                   <span className={styles.radioText}>{text}{count}</span>
                 </MenuItem>
@@ -69,6 +73,16 @@ class Header extends PureComponent {
             })
           }
         </Menu>
+        <div className={styles.addTaskButtonWrapper}>
+          <Button
+            type='primary'
+            ghost
+            block
+            size='large'
+            icon='plus'
+            onClick={this.add}
+          >添加</Button>
+        </div>
       </div>
     )
   }
