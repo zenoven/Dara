@@ -3,7 +3,7 @@ import { join } from 'path';
 import is from 'electron-is';
 import log from 'electron-log';
 import * as application from './services/application';
-import * as window from './services/window';
+import window from './services/window';
 import * as menu from './services/menu';
 import aria2 from './services/aria2';
 import * as store from './config/store';
@@ -45,7 +45,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  if (window.getAllWindows.length === 0) {
+  if (window.getAllWindows().length === 0) {
     application.init();
   }
 });

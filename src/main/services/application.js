@@ -1,7 +1,7 @@
-import { create, getPath } from './window';
+import window from './window';
 
 export function init() {
-  const win = create({
+  const win = window.create({
     width: 900,
     height: 600,
     minWidth: 600,
@@ -9,6 +9,6 @@ export function init() {
     titleBarStyle: 'hidden',
     frame: false,
   });
-  win.loadURL(getPath());
+  win.loadURL(window.getPath());
   return win;
 }

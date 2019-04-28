@@ -4,6 +4,7 @@ import React, { PureComponent } from 'react';
 import { Icon, Menu, Button } from 'antd';
 import styles from './index.less';
 
+const { window } = remote.getGlobal('services');
 const MenuItem = Menu.Item;
 
 export const statusList = [
@@ -44,7 +45,7 @@ class Header extends PureComponent {
   }
 
   add = () => {
-
+    window.toggleNewTaskModal(true);
   }
 
   render() {

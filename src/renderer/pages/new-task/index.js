@@ -9,6 +9,7 @@ const {
 
 export default connect(({ task }) => ({ task }))((props) =>
   <Wrapper noSidebar>
-    <List />
+    hello
+
   </Wrapper>
 );
