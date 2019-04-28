@@ -1,6 +1,12 @@
 import is from 'electron-is';
 import { join } from 'path';
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, remote } from 'electron';
+
+const defaultWindowOptions = {
+  webPreferences: {
+    nodeIntegration: true,
+  }
+};
 
 const newTaskModalOptions = {
   width: 400,
@@ -15,7 +21,10 @@ class Window {
 
   create(opts) {
     let all = this.getAllWindows();
-    let win = new BrowserWindow(opts);
+    let win = new BrowserWindow({
+      ...defaultWindowOptions,
+      ...(opts || {})
+    });
     if (!all.length) {
       this.mainWindow = win;
     }
