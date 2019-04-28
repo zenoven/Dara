@@ -9,20 +9,32 @@ const newTaskModalOptions = {
 
 class Window {
   constructor(props) {
+    this.mainWindow = null;
     this.createTaskModal = null;
   }
 
   create(opts) {
+    let all = this.getAllWindows();
     let win = new BrowserWindow(opts);
+    if (!all.length) {
+      this.mainWindow = win;
+    }
     win.on('close', () => {
       win = null;
+      let all = this.getAllWindows();
+      if (!all.length) {
+        this.mainWindow = null;
+      }
     });
     return win;
   }
 
   toggleNewTaskModal(show) {
     if (show) {
-      this.createTaskModal = this.create(newTaskModalOptions);
+      this.createTaskModal = this.create({
+        ...newTaskModalOptions,
+        parent: this.mainWindow
+      });
       this.createTaskModal.loadURL(this.getPath('new-task'));
       this.createTaskModal.on('close', () => {
         this.createTaskModal = null;

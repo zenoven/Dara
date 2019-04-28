@@ -8,7 +8,12 @@ const {
 } = remote.getGlobal('services');
 
 export default connect(({ task }) => ({ task }))((props) =>
-  <Wrapper noSidebar>
+  <Wrapper
+    noSidebar
+    onClick={() => {
+      window.toggleNewTaskModal(false);
+    }}
+  >
     hello
 
   </Wrapper>

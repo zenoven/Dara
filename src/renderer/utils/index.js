@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js';
 
+export function noop(){}
+
 export function formatTask(task) {
   let {
     gid,

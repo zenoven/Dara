@@ -3,11 +3,12 @@ import styles from './index.less';
 import { LocaleProvider } from 'antd';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 import 'moment/locale/zh-cn';
+import { noop } from 'utils';
 
 export default ({noSidebar, hideNav, ...props}) => {
   return (
     <LocaleProvider locale={zh_CN}>
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} onClick={props.onClick || noop}>
         {
           noSidebar
             ? props.children
