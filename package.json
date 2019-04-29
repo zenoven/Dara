@@ -16,10 +16,10 @@
   "scripts": {
     "start": "electron app/dist/main/main",
     "dev": "concurrently \"npm run dev:renderer\" \"npm run dev:main\"",
-    "dev:main": "BROWSER=none COMPRESS=none roadhog build -w",
+    "dev:main": "ESLINT=none BROWSER=none COMPRESS=none roadhog build -w",
     "dev:renderer": "APP_ROOT=src/renderer BROWSER=none umi dev",
     "build": "npm run build:main && npm run build:renderer",
-    "build:main": "roadhog build",
+    "build:main": "ESLINT=none roadhog build",
     "build:renderer": "APP_ROOT=src/renderer umi build",
     "pack": "npm run build && npm run rebuild && build",
     "pack:dir": "npm run build && npm run rebuild && build --dir",
@@ -27,15 +27,17 @@
     "rebuild": "electron-rebuild -m ./app"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.0.0-beta.49",
+    "@babel/core": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
     "concurrently": "^3.5.1",
     "electron": "^5.0.0",
     "electron-builder": "^20.39.0",
     "electron-debug": "^2.0.0",
     "electron-rebuild": "^1.8.4",
-    "roadhog": "^2.4.2",
+    "roadhog": "^0.6.1",
     "slash": "^2.0.0",
     "umi": "^2.6.16",
-    "umi-plugin-react": "^1.7.5"
+    "umi-plugin-react": "^1.7.5",
+    "webpack": "^4.30.0"
   }
 }
