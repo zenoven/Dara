@@ -1,15 +1,18 @@
 import { join, resolve } from 'path';
 import slash from 'slash';
 
+const cwd = process.cwd();
+
 export default {
-  disableServiceWorker: true,
-  disableDynamicImport: true,
-  hashHistory: true,
+  history: 'hash',
   publicPath: './static/',
   outputPath: '../../app/dist/renderer',
   plugins: [
-    ['umi-plugin-dva', {
-      immer: true,
+    ['umi-plugin-react', {
+      dva: {
+        immer: true,
+      },
+      antd: true,
     }],
   ],
   externals(context, request, callback) {
@@ -33,6 +36,25 @@ export default {
       isExternal = isDev ? requireAbsolute : `require('${request}')`;
     }
     callback(null, isExternal);
+  },
+  chainWebpack(config, { webpack }) {
+
+    // config.context = join()
+    config.entry('main').add('../main/index.js')
+    // config.entry = {
+    //   main: join(__dirname, '../main/index.js'),
+    // };
+    config.output.path = join(cwd, '../../app/dist/main');
+    config.target = 'electron';
+    config.externals = (context, request, callback) => {
+      callback(null, request.charAt(0) === '.' ? false : `require("${request}")`);
+    };
+    config.plugins.push(
+      new webpack.DefinePlugin({
+        $dirname: '__dirname',
+      }),
+    );
+    console.log('config:', config);
   },
   alias: {
     c: join(__dirname, './components'),

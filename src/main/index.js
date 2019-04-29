@@ -30,11 +30,11 @@ app.on('ready', () => {
   aria2.open();
 
   // 加载 devtools extension
-  if (is.dev()) {
-    devTools.forEach((tool) => {
-      BrowserWindow.addDevToolsExtension(tool)
-    })
-  }
+  // if (is.dev()) {
+  //   devTools.forEach((tool) => {
+  //     BrowserWindow.addDevToolsExtension(tool)
+  //   })
+  // }
 });
 
 app.on('window-all-closed', () => {
